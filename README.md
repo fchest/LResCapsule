@@ -1,25 +1,22 @@
-# MTCA-CapsNet
-Code for paper: Emotion recognition from EEG based on multi-task learning with capsule network and attention mechanism
+# Code for paper: Light-weight Residual Convolution-based Capsule Network for EEG Emotion Recognition
 
-## About the paper
-* Title: [Emotion recognition from EEG based on multi-task learning with capsule network and attention mechanism](https://doi.org/10.1016/j.compbiomed.2022.105303)
-* Authors: Chang Li, Bin Wang, Silin Zhang, Yu Liu, Rencheng Song, Juan Cheng, Xun Chen
-* Institution: Hefei University of Technology
-* Published in: Computers in Biology and Medicine
+# Instructions
+* On the DEAP dataset, each signal was segmented by using a 1s sliding window containing 128 samples for the preprocessed experimental signals, and 2400 samples (40 trials × 60 s) were obtained, with a final data dimension of 2400 × 128 × 32 for each subject. 
+* Due to the length difference between stimulus signals in the DREAMER dataset, there is also an increase or decrease in the number of EEG samples captured. We used the same sliding window technique to obtain 3728 EEG samples, with a final data dimension of 3728 × 128 × 14 for each subject.
+* The DEAP dataset can be found [here](http://www.eecs.qmul.ac.uk/mmv/datasets/deap). The DREAMER dataset can be found [here](https://zenodo.org/record/546113/accessrequest).
 
-## Instructions
-* Before running the code, please download the DEAP dataset, unzip it and place it into the right directory.  Each .mat data file contains the EEG signals and consponding labels of a subject. There are 2 arrays in the file: **data** 
-and **labels**. The shape of **data** is (40, 40, 8064). The shape of **label** is (40,4). 
+# Preprocess
 * Please run the deap_pre_process.py to Load the origin .mat data file and transform it into .pkl file.
-* Using Main.py to train and test the model (10-fold cross-validation), result of 10 folds will be saved in a .xls file.
-* The DEAP dataset can be found [here](http://www.eecs.qmul.ac.uk/mmv/datasets/deap).
-* The usage on DREAMER dataset is the same as above. The DREAMER dataset can be found [here](https://zenodo.org/record/546113/accessrequest).
+* Please run the dreamer_pre_process.py to Load the origin .mat data file and transform it into .pkl file.
 
-## Requirements
-+ Pyhton3.5
-+ pytorch (1.4.0 version)
-* If you have any questions, please contact binwang@mail.hfut.edu.cn
+# Run
+* Using LResCapsule.py to train and test the model (10-fold cross-validation) 
+* The server runs instructions in the background：nohup bash LResCapsule.sh>LResCapsule.log&
+
+# Requirements
++ Pyhton3.8.13
++ pytorch (1.12.0 version)
 
 ## Reference
-* [nishnik/CapsNet-PyTorch](https://github.com/nishnik/CapsNet-PyTorch)
 * [ynulonger/ijcnn](https://github.com/ynulonger/ijcnn)
+* [nishnik/CapsNet-PyTorch](https://github.com/nishnik/CapsNet-PyTorch)
